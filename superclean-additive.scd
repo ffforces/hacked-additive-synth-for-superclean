@@ -32,3 +32,36 @@ SynthDef(\additive,  {| out, ada = 0.001, adr = 1, amp = 1, adc = 1, freq = 200,
 	o = CleanPan.ar(o, ~clean.numChannels, pan);
 	Out.ar(out, o);
 }).store;
+
+//pattern
+y=x.play;
+y.stop;
+
+(
+x=Pdef(\one,
+Pseed(3,
+Pbind(\type, \cln,
+\snd, \additive,
+\dur, Pdup(Pwhite(1,3),Prand([1,2,3]+5,inf)),
+\ada, Prand([1,2,3]+5,inf),
+\adr, Pdup(Pwhite(1,5),Prand([4.3,5,6,7,1]+4,inf)),
+\bnd, Prand([-0.5,-0.2],inf),
+\div, Prand([1,2,4,2.3,0.8],inf),
+\freq, Ptuple([
+				Prand([30,37,35,30,37,35,30,37,\],inf),
+				Prand([42,44,\],inf),
+				Prand([54,57,31,54,57,31,54,57,31,54,57,31,54,57,31,54,57,31,\],inf)
+		],1).midicps,
+\pan, Pwhite(-0.3,0.3),			
+//\lhf, Pseg(Prand([0.0,1.0,0.5], inf),Pwhite(0.02,0.04),\lin,inf),
+\jpr, 0.9,
+\rev,0.8,
+\dry, 0,			
+\amp, 0.7,
+
+);
+);
+);
+)
+
+
